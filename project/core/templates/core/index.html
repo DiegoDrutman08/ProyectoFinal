@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {{ mensaje }}
+    {% endif %}
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Django - CoderHouse</div>
+            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+            <a class="btn btn-primary btn-xl text-uppercase" href="#producto">¡Saber mas!</a>
+        </div>
+    </header>
+    <!-- Productos-->
+    <section class="page-section" id="producto">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Formulario - Agregar Producto</h2>
+                <h3 class="section-subheading text-muted">Agrega un producto nuevo a la lista.</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="add-producto-form" action="{% url 'clase:agregar_producto' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="producto" name="producto" type="text" placeholder="Producto *" required="required" data-validation-required-message="Please enter your course." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="add-producto-submit" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Clientes-->
+    <section class="page-section bg-light" id="cliente">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Formulario - Agregar Cliente</h2>
+                <h3 class="section-subheading text-muted">Agrega un cliente nuevo a la lista.</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="add-cliente-form" action="{% url 'clase:agregar_cliente' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="cliente" name="cliente" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Please enter your name." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="add-cliente-submit" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>        
+    <!-- Vendedores-->
+    <section class="page-section" id="vendedor">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Formulario - Agregar vendedor</h2>
+                <h3 class="section-subheading text-muted">Agrega un vendedor nuevo a la lista.</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="add-vendedor-form" action="{% url 'clase:agregar_vendedor' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="vendedor" name="vendedor" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Por favor ingresa el nombre." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="edad" name="edad" type="number" placeholder="Edad" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="add-professor-submit" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <!-- Pedidos-->
+    <section class="page-section bg-light" id="pedido">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Agregar Pedido</h2>
+                <h3 class="section-subheading text-muted">Completa los campos para agregar un nuevo pedido.</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-2">
+                    <form action="{% url 'clase:agregar_pedido' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-primary btn-xl text-uppercase" type="submit">Agregar Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

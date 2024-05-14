@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Logout
+{% endblock %}
+
+{% block content %}
+    <section class="page-section bg-light" id="pedido">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <h2 class="section-heading text-uppercase">Has cerrado sesión</h2>
+                        <h3 class="section-subheading text-muted">¡Hasta luego!</h3>
+                        <a href="{% url 'core:home' %}" class="btn btn-secondary">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

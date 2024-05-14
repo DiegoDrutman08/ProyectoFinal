@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+    Productos: Borrar una Categoría de Productos
+{% endblock titulo %}
+
+{% block contenido %}
+    
+    <p class="fs-5 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+    </form>
+    <div class="fs-3 pb-4">
+        <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
+    </div>
+
+{% endblock contenido %}

@@ -1,17 +1,81 @@
-from django.shortcuts import render, redirect
-from django.db import IntegrityError
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Producto, Cliente, Vendedor, Pedido
+from django.db import IntegrityError
+from django.db.models.query import QuerySet
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from . import forms, models
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 def home(request):
-    return render(request, "core/base.html")
+    return render(request, "clase/index.html")
 
-def agregar_producto(request):
-    if request.method == 'POST':
-        nombre_producto = request.POST.get('producto')
-        Producto.objects.create(nombre=nombre_producto)
-        return redirect('core:home')
-    else:
-        return render(request, 'core/base.html')
+class ProductoCategoriaList(ListView):
+    model = models.ProductoCategoria
+
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.ProductoCategoria.objects.filter(nombre__icontains=consulta)
+        else:
+            object_list = models.ProductoCategoria.objects.all()
+        return object_list
+
+class ProductoCategoriaCreate(CreateView):
+    model = models.ProductoCategoria
+    form_class = forms.ProductoCategoriaForm
+    success_url = reverse_lazy("clase:home")
+
+class ProductoCategoriaUpdate(UpdateView):
+    model = models.ProductoCategoria
+    form_class = forms.ProductoCategoriaForm
+    success_url = reverse_lazy("clase:productocategoria_list")
+
+class ProductoCategoriaDetail(DetailView):
+    model = models.ProductoCategoria
+
+class ProductoCategoriaDelete(LoginRequiredMixin, DeleteView):
+    model = models.ProductoCategoria
+    success_url = reverse_lazy("clase:productocategoria_list")
+
+class ProductoList(ListView):
+    model = models.Producto
+
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.Producto.objects.filter(nombre__icontains=consulta)
+        else:
+            object_list = models.Producto.objects.all()
+        return object_list
+
+
+class ProductoCreate(CreateView):
+    model = models.Producto
+    form_class = forms.ProductoForm
+    success_url = reverse_lazy("clase:home")
+
+
+class ProductoUpdate(UpdateView):
+    model = models.Producto
+    form_class = forms.ProductoForm
+    success_url = reverse_lazy("clase:producto_list")
+
+
+class ProductoDetail(DetailView):
+    model = models.Producto
+
+
+class ProductoDelete(LoginRequiredMixin, DeleteView):
+    model = models.Producto
+    success_url = reverse_lazy("clase:producto_list")
+
 
 def agregar_cliente(request):
     if request.method == 'POST':

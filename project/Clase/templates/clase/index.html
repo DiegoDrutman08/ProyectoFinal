@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    App Productos
+{% endblock titulo %}
+{% block contenido %}
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_producto.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Django - CoderHouse</div>
+            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+        </div>
+    </header>
+    <div class="container my-5">
+        <h3 class="pb-3 border-bottom">Categoría de productos</h3>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+            <a class="btn btn-primary me-md-2" href="{% url 'clase:productocategoria_create' %}" role="button">Crear Categorías de Productos</a>
+            <a class="btn btn-outline-primary" href="{% url 'clase:productocategoria_list' %}" role="button">Listar Categorías de Productos</a>
+        </div>
+
+        <h3 class="pb-3 border-bottom">Productos</h3>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+            <a class="btn btn-success me-md-2" href="{% url 'clase:producto_create' %}" role="button">Crear Productos</a>
+            <a class="btn btn-outline-success" href="{% url 'clase:producto_list' %}" role="button">Listar Productos</a>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+            <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
+        </div>
+    </div>
+{% endblock contenido %}

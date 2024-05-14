@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Productos: Lista de Productos
+{% endblock titulo %}
+{% block contenido %}
+    <div class="container my-5">
+        <div class="py-4">
+            <form class="input-group mb-3"
+                  action="{% url 'clase:producto_list' %}"
+                  method="get">
+                <input type="text"
+                       class="form-control"
+                       name="consulta"
+                       placeholder="Buscar..."
+                       aria-label="Buscar">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in object_list %}
+                    <tr>
+                        <td>{{ producto.nombre }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm me-1"
+                               href="{% url 'clase:producto_detail' producto.id %}">Detalle</a>
+                            <a class="btn btn-warning btn-sm me-1"
+                               href="{% url 'clase:producto_update' producto.id %}">Cambiar</a>
+                            <a class="btn btn-danger btn-sm"
+                               href="{% url 'clase:producto_delete' producto.id %}">Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <a class="btn btn-secondary"
+               href="{% url 'clase:home' %}"
+               role="button">Volver al inicio de Producto</a>
+        </div>
+    </div>
+{% endblock contenido %}

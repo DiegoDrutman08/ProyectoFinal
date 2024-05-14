@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Productos: Detalle de una Categoría de Producto
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <ul>
+        <li>Nombre: {{ object.nombre }}</li>
+        <li>Descripción: {{ object.descripcion }}</li>
+    </ul>
+
+    <div class="fs-3 pb-4">
+        <a href="{% url 'clase:productocategoria_list' %}">Volver</a>
+    </div>
+
+{% endblock contenido %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Productos: Lista de Categoría de Productos
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <div class="py-lg-4 ">
+        <form action="{% url 'clase:productocategoria_list' %}" method="get">
+            <input type="text" name="consulta" placeholder="Buscar...">
+        </form>
+    </div>
+    <ul>
+        {% comment  %}
+        {% for producto in productos %}
+        {% endcomment %}
+
+        {% for producto in object_list %}
+            <li>{{ producto.nombre }}
+                <a href="{% url 'clase:productocategoria_detail' producto.id %}">Detalle</a>
+                <a href="{% url 'clase:productocategoria_update' producto.id %}">Cambiar</a>
+                <a href="{% url 'clase:productocategoria_delete' producto.id %}">Borrar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="fs-3 pb-4">
+        <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
+    </div>
+
+{% endblock contenido %}

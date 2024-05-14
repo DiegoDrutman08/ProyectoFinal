@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Productos: Detalle de un Producto
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <ul>
+        <li>Nombre: {{ object.nombre }}</li>
+    </ul>
+
+    <div class="fs-3 pb-4">
+        <a href="{% url 'clase:producto_list' %}">Volver</a>
+    </div>
+
+{% endblock contenido %}

@@ -40,7 +40,7 @@ class ProductoCategoriaUpdate(UpdateView):
 class ProductoCategoriaDetail(DetailView):
     model = models.ProductoCategoria
 
-class ProductoCategoriaDelete(LoginRequiredMixin, DeleteView):
+class ProductoCategoriaDelete(DeleteView):
     model = models.ProductoCategoria
     success_url = reverse_lazy("clase:productocategoria_list")
 
@@ -72,7 +72,7 @@ class ProductoDetail(DetailView):
     model = models.Producto
 
 
-class ProductoDelete(LoginRequiredMixin, DeleteView):
+class ProductoDelete(DeleteView):
     model = models.Producto
     success_url = reverse_lazy("clase:producto_list")
 

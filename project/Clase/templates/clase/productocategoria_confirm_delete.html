@@ -5,23 +5,23 @@
 {% endblock title %}
 
 {% block content %}
-        <!-- Responsive navbar-->
-        {% include 'core/components/navbar_producto.html' %}
-        <!-- Header-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Django - CoderHouse</div>
-                <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
-            </div>
-        </header>
-    <p class="fs-5 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
-
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_producto.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Django - CoderHouse</div>
+            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+        </div>
+    </header>
+    <div class="container my-5">
+    <p class="fs-2 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button> <!-- Se ajusta el tamaño del botón y el texto en mayúsculas -->
     </form>
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
+        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase mt-2">Volver al inicio de Producto</a> <!-- Se ajusta el tamaño del botón y el texto en mayúsculas -->
     </div>
-
+    </div>
 {% endblock content %}

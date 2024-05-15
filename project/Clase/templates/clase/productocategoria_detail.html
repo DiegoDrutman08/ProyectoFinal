@@ -5,22 +5,23 @@
 {% endblock title %}
 
 {% block content %}
-        <!-- Responsive navbar-->
-        {% include 'core/components/navbar_producto.html' %}
-        <!-- Header-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Django - CoderHouse</div>
-                <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
-            </div>
-        </header>
-    <ul>
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_producto.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Django - CoderHouse</div>
+            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+        </div>
+    </header>
+    <div class="container my-5">
+    <ul style="font-size: 30px;"> <!-- Se ajusta el tamaño de la fuente -->
         <li>Nombre: {{ object.nombre }}</li>
         <li>Descripción: {{ object.descripcion }}</li>
     </ul>
 
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:productocategoria_list' %}">Volver</a>
+        <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-secondary btn-sm text-uppercase">Volver</a> <!-- Se hace el botón más pequeño y el texto en mayúsculas -->
     </div>
-
+    </div>
 {% endblock content %}

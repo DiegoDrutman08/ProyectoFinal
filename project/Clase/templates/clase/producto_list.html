@@ -14,29 +14,22 @@
         </div>
     </header>
     <div class="container my-5">
-        <div class="py-4">
-            <form class="input-group mb-3"
-                  action="{% url 'clase:producto_list' %}"
-                  method="get">
-                <input type="text"
-                       class="form-control"
-                       name="consulta"
-                       placeholder="Buscar..."
-                       aria-label="Buscar">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        <div class="py-lg-2">
+            <form action="{% url 'clase:producto_list' %}" method="get">
+                <input type="text" name="consulta" class="form-control" style="font-size: 30px;" placeholder="Buscar..."> <!-- Se ajusta el tamaño de la fuente -->
             </form>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Producto</th>
+                    <th scope="col" style="font-size: 30px;">Producto</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for producto in object_list %}
                     <tr>
-                        <td>{{ producto.nombre }}</td>
+                        <td style="font-size: 30px;">{{ producto.nombre }}</td> 
                         <td>
                             <a class="btn btn-info btn-sm me-1"
                                href="{% url 'clase:producto_detail' producto.id %}">Detalle</a>
@@ -50,7 +43,7 @@
             </tbody>
         </table>
         <div class="mt-4">
-            <a class="btn btn-secondary"
+            <a class="btn btn-secondary btn-sm text-uppercase"
                href="{% url 'clase:home' %}"
                role="button">Volver al inicio de Producto</a>
         </div>

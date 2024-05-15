@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+
 {% block title %}
     Productos: Detalle de un Producto
 {% endblock title %}
@@ -14,12 +15,14 @@
             <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
         </div>
     </header>
+    <div class="container my-5">
     <ul>
-        <li>Nombre: {{ object.nombre }}</li>
+        <li style="font-size: 30px;">Nombre: {{ object.nombre }}</li>
     </ul>
 
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:producto_list' %}">Volver</a>
+        <a href="{% url 'clase:producto_list' %}" class="btn btn-secondary btn-sm text-uppercase float-left">Volver al inicio de Producto</a>
+    </div>
     </div>
 
 {% endblock content %}

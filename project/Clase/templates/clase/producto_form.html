@@ -11,24 +11,26 @@
 {% endblock title %}
 
 {% block content %}
-        <!-- Responsive navbar-->
-        {% include 'core/components/navbar_producto.html' %}
-        <!-- Header-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Django - CoderHouse</div>
-                <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
-            </div>
-        </header>
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_producto.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading" style="font-size: 30px;">Django - CoderHouse</div> <!-- Ajusta el tamaño de la fuente -->
+            <div class="masthead-heading text-uppercase" style="font-size: 30px;">MI WEB INTERMEDIA</div> <!-- Ajusta el tamaño de la fuente -->
+        </div>
+    </header>
+    <div class="container my-5">
     <form method="post">
         {% csrf_token %}
-        <table>
+        <table style="font-size: 30px;"> <!-- Ajusta el tamaño de la fuente para los campos del formulario -->
             {{ form.as_table }}
         </table>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary btn-lg text-uppercase float-left">Guardar</button> <!-- Ajusta el tamaño del botón y el texto en mayúsculas -->
     </form>
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
+        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase float-left mt-2">Volver al inicio de Producto</a> <!-- Ajusta el tamaño del botón y el texto en mayúsculas -->
     </div>
-
+    </div>
+    
 {% endblock content %}

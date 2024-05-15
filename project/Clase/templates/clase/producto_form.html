@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
-
-{% block titulo %}
+{% load static %}
+{% block title %}
     Producto: 
     {% if form.instance.pk %}
         Editar
@@ -8,10 +8,18 @@
         Crear
     {% endif %}
     Productos
-{% endblock titulo %}
+{% endblock title %}
 
-{% block contenido %}
-    
+{% block content %}
+        <!-- Responsive navbar-->
+        {% include 'core/components/navbar_producto.html' %}
+        <!-- Header-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Django - CoderHouse</div>
+                <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+            </div>
+        </header>
     <form method="post">
         {% csrf_token %}
         <table>
@@ -23,4 +31,4 @@
         <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
     </div>
 
-{% endblock contenido %}
+{% endblock content %}

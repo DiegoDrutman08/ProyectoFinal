@@ -18,7 +18,7 @@ urlpatterns = [
 
 urlpatterns += [
     path("clase/list/", views.ProductoList.as_view(), name="producto_list"),
-    path("create/", views.ProductoCreate.as_view(), name="producto_create"),
+    path("clase/create/", views.ProductoCreate.as_view(), name="producto_create"),
     path("clase/detail/<int:pk>", views.ProductoDetail.as_view(), name="producto_detail"),
     path("clase/update/<int:pk>", views.ProductoUpdate.as_view(), name="producto_update"),
     path("clase/delete/<int:pk>", views.ProductoDelete.as_view(), name="producto_delete"),

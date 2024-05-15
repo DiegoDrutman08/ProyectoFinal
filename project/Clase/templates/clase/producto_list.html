@@ -1,8 +1,18 @@
 {% extends 'core/base.html' %}
-{% block titulo %}
+{% load static %}
+{% block title %}
     Productos: Lista de Productos
-{% endblock titulo %}
-{% block contenido %}
+{% endblock title %}
+{% block content %}
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_producto.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Django - CoderHouse</div>
+            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+        </div>
+    </header>
     <div class="container my-5">
         <div class="py-4">
             <form class="input-group mb-3"
@@ -45,4 +55,4 @@
                role="button">Volver al inicio de Producto</a>
         </div>
     </div>
-{% endblock contenido %}
+{% endblock content %}

@@ -1,11 +1,19 @@
 {% extends 'core/base.html' %}
-
-{% block titulo %}
+{% load static %}
+{% block title %}
     Productos: Borrar una Categoría de Productos
-{% endblock titulo %}
+{% endblock title %}
 
-{% block contenido %}
-    
+{% block content %}
+        <!-- Responsive navbar-->
+        {% include 'core/components/navbar_producto.html' %}
+        <!-- Header-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Django - CoderHouse</div>
+                <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+            </div>
+        </header>
     <p class="fs-5 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
 
     <form method="post">
@@ -16,4 +24,4 @@
         <a href="{% url 'clase:home' %}">Volver al inicio de Producto</a>
     </div>
 
-{% endblock contenido %}
+{% endblock content %}

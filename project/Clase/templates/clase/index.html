@@ -1,8 +1,9 @@
 {% extends 'core/base.html' %}
-{% block titulo %}
+{% load static %}
+{% block title %}
     App Productos
-{% endblock titulo %}
-{% block contenido %}
+{% endblock title %}
+{% block content %}
     <!-- Responsive navbar-->
     {% include 'core/components/navbar_producto.html' %}
     <!-- Header-->
@@ -29,4 +30,4 @@
             <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
         </div>
     </div>
-{% endblock contenido %}
+{% endblock content %}

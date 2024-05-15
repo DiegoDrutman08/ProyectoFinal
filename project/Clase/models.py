@@ -17,7 +17,7 @@ class ProductoCategoria(models.Model):
 
 
 class Producto(models.Model):
-    categoria_id = models.ForeignKey(
+    categoria = models.ForeignKey(
         ProductoCategoria, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="categoría de producto"
     )
     nombre = models.CharField(max_length=100)

@@ -73,7 +73,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form id="add-producto-form" action="{% url 'clase:agregar_producto' %}" method="POST" class="text-center">
+                    <form id="add-producto-form" action="{% url 'clase:home' %}" method="POST" class="text-center">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button class="btn btn-primary btn-xl text-uppercase" type="submit">Agregar producto</button>

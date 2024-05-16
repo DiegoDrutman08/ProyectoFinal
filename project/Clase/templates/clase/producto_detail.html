@@ -17,11 +17,16 @@
     </header>
     <div class="container my-5">
     <ul>
-        <li style="font-size: 30px;">Nombre: {{ object.nombre }}</li>
+        <h1 style="font-size: 30px;">Productos de esta categoría</h1>
+        <li style="font-size: 24px;">Categoria: {{ object.categoria }}</li>
+        <li style="font-size: 24px;">Nombre: {{ object.nombre }}</li>
+        <li style="font-size: 24px;">Cantidad: {{ object.cantidad }}</li>
+        <li style="font-size: 24px;">Precio: {{ object.descripcion }}</li>
+        <li style="font-size: 24px;">Fecha: {{ object.fecha_actualizacion }}</li>
     </ul>
 
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:producto_list' %}" class="btn btn-secondary btn-sm text-uppercase float-left">Volver al inicio de Producto</a>
+        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
     </div>
     </div>
 

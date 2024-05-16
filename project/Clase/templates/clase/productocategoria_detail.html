@@ -15,13 +15,14 @@
         </div>
     </header>
     <div class="container my-5">
-    <ul style="font-size: 30px;"> <!-- Se ajusta el tamaño de la fuente -->
+    <h1 style="font-size: 30px;">Categoria</h1>
+    <ul style="font-size: 24px;"> <!-- Se ajusta el tamaño de la fuente -->
         <li>Nombre: {{ object.nombre }}</li>
         <li>Descripción: {{ object.descripcion }}</li>
     </ul>
 
     <div class="fs-3 pb-4">
-        <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-secondary btn-sm text-uppercase">Volver</a> <!-- Se hace el botón más pequeño y el texto en mayúsculas -->
+        <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-primary btn-lg text-uppercase">Volver al inicio de producto</a> <!-- Se hace el botón más pequeño y el texto en mayúsculas -->
     </div>
     </div>
 {% endblock content %}

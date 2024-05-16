@@ -16,36 +16,31 @@
     <div class="container my-5">
         <div class="py-lg-2">
             <form action="{% url 'clase:producto_list' %}" method="get">
-                <input type="text" name="consulta" class="form-control" style="font-size: 30px;" placeholder="Buscar..."> <!-- Se ajusta el tamaño de la fuente -->
+                <input type="text" name="consulta" class="form-control fs-5" placeholder="Buscar..."> <!-- Se ajusta el tamaño de la fuente -->
             </form>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" style="font-size: 30px;">Producto</th>
+                    <th scope="col" class="fs-5">Productos</th> <!-- Se ajusta el tamaño de la fuente -->
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for producto in object_list %}
                     <tr>
-                        <td style="font-size: 30px;">{{ producto.nombre }}</td> 
+                        <td class="fs-5">{{ producto.nombre }}</td> <!-- Se ajusta el tamaño de la fuente -->
                         <td>
-                            <a class="btn btn-info btn-sm me-1"
-                               href="{% url 'clase:producto_detail' producto.id %}">Detalle</a>
-                            <a class="btn btn-warning btn-sm me-1"
-                               href="{% url 'clase:producto_update' producto.id %}">Cambiar</a>
-                            <a class="btn btn-danger btn-sm"
-                               href="{% url 'clase:producto_delete' producto.id %}">Borrar</a>
+                            <a class="btn btn-info btn-lg me-1" href="{% url 'clase:producto_detail' producto.id %}">Detalle</a> <!-- Se hace el botón más grande -->
+                            <a class="btn btn-warning btn-lg me-1" href="{% url 'clase:producto_update' producto.id %}">Cambiar</a> <!-- Se hace el botón más grande -->
+                            <a class="btn btn-danger btn-lg" href="{% url 'clase:producto_delete' producto.id %}">Borrar</a> <!-- Se hace el botón más grande -->
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
         <div class="mt-4">
-            <a class="btn btn-secondary btn-sm text-uppercase"
-               href="{% url 'clase:home' %}"
-               role="button">Volver al inicio de Producto</a>
+            <a class="btn btn-secondary btn-lg text-uppercase" href="{% url 'clase:home' %}" role="button">Volver al inicio de Producto</a> <!-- Se hace el botón más grande y el texto en mayúsculas -->
         </div>
     </div>
 {% endblock content %}

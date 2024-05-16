@@ -15,7 +15,8 @@
         </div>
     </header>
     <div class="container my-5">
-    <p class="fs-2 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
+    <h1 style="font-size: 30px;">Categoria</h1>
+    <p class="fst-italic" style="font-size: 24px;">¿Confirma eliminar "{{ object.nombre }}"?</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button> <!-- Se ajusta el tamaño del botón y el texto en mayúsculas -->

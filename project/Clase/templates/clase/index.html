@@ -7,20 +7,20 @@
     <!-- Responsive navbar-->
     {% include 'core/components/navbar_producto.html' %}
     <!-- Header-->
-    <header class="masthead text-center">
+    <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading mb-4">Bienvenido a nuestra tienda</div>
-            <h1 class="masthead-heading text-uppercase mb-0">Catálogo de Productos</h1>
+            <div class="masthead-subheading">Bienvenido a nuestra tienda</div>
+            <h1 class="masthead-heading text-uppercase">Catálogo de Productos</h1>
         </div>
     </header>
     <div class="container my-5">
-        <h3 class="pb-3 border-bottom">Categorías de Productos</h3>
+        <h3 class="pb-3 border-bottom" style="font-size: 30px;">Categorías</h3>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
             <a class="btn btn-primary btn-lg me-md-2" href="{% url 'clase:productocategoria_create' %}" role="button">Crear Categoría</a>
             <a class="btn btn-outline-primary btn-lg" href="{% url 'clase:productocategoria_list' %}" role="button">Listar Categorías</a>
         </div>
 
-        <h3 class="pb-3 border-bottom">Productos</h3>
+        <h3 class="pb-3 border-bottom" style="font-size: 30px;">Productos</h3>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
             <a class="btn btn-success btn-lg me-md-2" href="{% url 'clase:producto_create' %}" role="button">Agregar Producto</a>
             <a class="btn btn-outline-success btn-lg" href="{% url 'clase:producto_list' %}" role="button">Listar Productos</a>

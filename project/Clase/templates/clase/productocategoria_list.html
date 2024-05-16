@@ -23,21 +23,21 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" style="font-size: 30px;">Producto</th>
+                    <th scope="col" style="font-size: 30px;">Categoria</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for producto in object_list %}
                     <tr>
-                        <td style="font-size: 30px;">{{ producto.nombre }}</td> 
+                        <td style="font-size: 24px;">{{ producto.nombre }}</td> 
                         <td>
                             <a class="btn btn-info btn-lg me-1"
-                               href="{% url 'clase:producto_detail' producto.id %}">Detalle</a> <!-- Se hace el botón más grande -->
+                               href="{% url 'clase:productocategoria_detail' producto.id %}">Detalle</a> <!-- Se hace el botón más grande -->
                             <a class="btn btn-warning btn-lg me-1"
-                               href="{% url 'clase:producto_update' producto.id %}">Cambiar</a> <!-- Se hace el botón más grande -->
+                               href="{% url 'clase:productocategoria_update' producto.id %}">Editar</a> <!-- Se hace el botón más grande -->
                             <a class="btn btn-danger btn-lg"
-                               href="{% url 'clase:producto_delete' producto.id %}">Borrar</a> <!-- Se hace el botón más grande -->
+                               href="{% url 'clase:productocategoria_delete' producto.id %}">Borrar</a> <!-- Se hace el botón más grande -->
                         </td>
                     </tr>
                 {% endfor %}

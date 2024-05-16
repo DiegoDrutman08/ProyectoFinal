@@ -31,3 +31,4 @@ admin.site.register(models.Producto, ProductoAdmin)
 admin.site.register(models.Cliente)
 admin.site.register(models.Vendedor)
 admin.site.register(models.Pedido)
+

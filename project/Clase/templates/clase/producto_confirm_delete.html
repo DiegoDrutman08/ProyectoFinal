@@ -16,14 +16,15 @@
         </div>
     </header>
     <div class="container my-5">
-    <p class="fs-5 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
+        <h1 style="font-size: 30px;">Eliminar categoría</h1>
+        <p class="fs-3 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
 
-    <form method="post" class="mt-4">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-sm text-uppercase float-left">Confirmar</button>
-    </form>
-    <div class="fs-3 pb-4">
-        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-sm text-uppercase float-left mr-2">Volver al inicio de Producto</a>
-    </div>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button>
+        </form>
+        <div class="fs-3 pb-4 mt-2">
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
+        </div>
     </div>
 {% endblock content %}

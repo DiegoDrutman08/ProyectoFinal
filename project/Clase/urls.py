@@ -11,10 +11,12 @@ urlpatterns = [
     path("productocategoria/detail/<int:pk>", views.ProductoCategoriaDetail.as_view(), name="productocategoria_detail"),
     path("productocategoria/update/<int:pk>", views.ProductoCategoriaUpdate.as_view(), name="productocategoria_update"),
     path("productocategoria/delete/<int:pk>", views.ProductoCategoriaDelete.as_view(), name="productocategoria_delete"),
+    path('index_staff/', views.index_staff, name='index_staff'),
     path('agregar_cliente/', views.agregar_cliente, name='agregar_cliente'),
     path('agregar_vendedor/', views.agregar_vendedor, name='agregar_vendedor'),
     path('agregar_pedido/', views.agregar_pedido, name='agregar_pedido'),
     path('about_me/', views.about_me, name='about_me'),
+    path('mis_datos/', views.mis_datos, name='mis_datos'),
 ]
 
 urlpatterns += [

@@ -37,8 +37,11 @@ class Producto(models.Model):
 
 
 class Cliente(models.Model):
-    nombre = models.CharField(max_length=100)
-    
+    nombre = models.CharField(max_length=100, null=True, blank=True)
+    direccion = models.CharField(max_length=100, null=True, blank=True)  # Campo para la dirección del cliente
+    email = models.EmailField(max_length=100, null=True, blank=True)  # Campo para el correo electrónico del cliente
+    edad = models.IntegerField(max_length=100, null=True, blank=True)  # Campo para la edad del cliente
+
     def __str__(self):
         return self.nombre
     

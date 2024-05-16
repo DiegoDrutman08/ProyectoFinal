@@ -4,6 +4,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from . import forms, models
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -78,10 +79,18 @@ class ProductoDelete(DeleteView):
 
 def agregar_cliente(request):
     if request.method == 'POST':
-        nombre_cliente = request.POST.get('cliente')
-        Cliente.objects.create(nombre=nombre_cliente)
-        return redirect('core:home')
+        nombre_cliente = request.POST.get('nombre')
+        direccion_cliente = request.POST.get('direccion')
+        email_cliente = request.POST.get('email')
+        edad_cliente = request.POST.get('edad')
+
+        # Crear el cliente con los datos recibidos
+        Cliente.objects.create(nombre=nombre_cliente, direccion=direccion_cliente, email=email_cliente, edad=edad_cliente)
+
+        # Redireccionar a la página principal
+        return redirect('clase:agregar_pedido')
     else:
+        # Si no es una solicitud POST, mostrar el formulario
         return render(request, 'core/base.html')
 
 def agregar_vendedor(request):
@@ -133,3 +142,10 @@ def agregar_pedido(request):
     
 def about_me(request):
     return render(request, 'core/about_me.html')
+
+@staff_member_required
+def index_staff(request):
+    return render(request, 'core/index_staff.html')
+
+def mis_datos(request):
+    return render(request, 'core/mis_datos.html')

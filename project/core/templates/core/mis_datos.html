@@ -18,33 +18,36 @@
             <a class="btn btn-primary btn-xl text-uppercase" href="#producto">¡Saber mas!</a>
         </div>
     </header>
-
-    <section class="page-section bg-light" id="cliente">
+    <section class="page-section bg-light" id="cliente-info">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Ingresa tus datos personales</h2>
-                <h3 class="section-subheading text-muted">Los necesitaremos para realizar el pedido.</h3>
+                <h2 class="section-heading text-uppercase">Información del Cliente</h2>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form id="add-cliente-form" action="{% url 'clase:agregar_cliente' %}" method="POST" class="text-center">
-                        {% csrf_token %}
+                    {% if cliente %}
                         <div class="form-group">
-                            <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre *" required="required" />
+                            <label for="nombre">Nombre:</label>
+                            <p>{{ cliente.nombre }}</p>
                         </div>
                         <div class="form-group">
-                            <input class="form-control mt-3" id="direccion" name="direccion" type="text" placeholder="Dirección *" required="required" />
+                            <label for="direccion">Dirección:</label>
+                            <p>{{ cliente.direccion }}</p>
                         </div>
                         <div class="form-group">
-                            <input class="form-control mt-3" id="email" name="email" type="email" placeholder="Correo Electrónico *" required="required" />
+                            <label for="email">Correo Electrónico:</label>
+                            <p>{{ cliente.email }}</p>
                         </div>
                         <div class="form-group">
-                            <input class="form-control mt-3" id="edad" name="edad" type="number" placeholder="Edad *" required="required" />
+                            <label for="edad">Edad:</label>
+                            <p>{{ cliente.edad }}</p>
                         </div>
-                        <button class="btn btn-primary btn-xl text-uppercase mt-3" type="submit">Enviar</button>
-                    </form>
+                    {% else %}
+                        <p>No se encontraron datos de cliente.</p>
+                        <a href="{% url 'core:home' %}" class="btn btn-primary">Agregar Cliente</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </section>    
+    </section>       
 {% endblock content %}

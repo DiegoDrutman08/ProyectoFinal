@@ -16,15 +16,15 @@
     <!-- Header-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Django - CoderHouse</div>
-            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+            <h1 class="masthead-heading text-uppercase">Productos</h1>
         </div>
     </header>
     <div class="container my-5">
     <form method="post">
         {% csrf_token %}
         <table class="table table-striped">
-            <h1 style="font-size: 30px;">Editar categoría</h1> <!-- Agregado de la clase table y table-striped para darle estilo similar al segundo código -->
+            <h1 style="font-size: 30px;">Agregar producto</h1> <!-- Agregado de la clase table y table-striped para darle estilo similar al segundo código -->
             {{ form.as_table }}
         </table>
         <button type="submit" class="btn btn-primary btn-lg text-uppercase float-left">Guardar</button>

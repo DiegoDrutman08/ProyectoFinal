@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Producto, Cliente, Vendedor, Pedido
 from django.db import IntegrityError
 from django.db.models.query import QuerySet

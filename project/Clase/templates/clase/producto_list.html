@@ -9,8 +9,8 @@
     <!-- Header-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Django - CoderHouse</div>
-            <div class="masthead-heading text-uppercase">MI WEB INTERMEDIA</div>
+            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+            <h1 class="masthead-heading text-uppercase">Productos</h1>
         </div>
     </header>
     <div class="container my-5">
@@ -22,14 +22,14 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" class="fs-5">Productos</th> <!-- Se ajusta el tamaño de la fuente -->
+                    <th scope="col" style="font-size: 30px;">Productos</th> <!-- Se ajusta el tamaño de la fuente -->
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for producto in object_list %}
                     <tr>
-                        <td class="fs-5">{{ producto.nombre }}</td> <!-- Se ajusta el tamaño de la fuente -->
+                        <td style="font-size: 24px;">{{ producto.nombre }}</td> <!-- Se ajusta el tamaño de la fuente -->
                         <td>
                             <a class="btn btn-info btn-lg me-1" href="{% url 'clase:producto_detail' producto.id %}">Detalle</a> <!-- Se hace el botón más grande -->
                             <a class="btn btn-warning btn-lg me-1" href="{% url 'clase:producto_update' producto.id %}">Cambiar</a> <!-- Se hace el botón más grande -->

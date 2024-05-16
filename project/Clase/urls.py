@@ -14,6 +14,7 @@ urlpatterns = [
     path('agregar_cliente/', views.agregar_cliente, name='agregar_cliente'),
     path('agregar_vendedor/', views.agregar_vendedor, name='agregar_vendedor'),
     path('agregar_pedido/', views.agregar_pedido, name='agregar_pedido'),
+    path('about_me/', views.about_me, name='about_me'),
 ]
 
 urlpatterns += [

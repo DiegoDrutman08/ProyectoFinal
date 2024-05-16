@@ -131,3 +131,6 @@ def agregar_pedido(request):
         vendedores = Vendedor.objects.all()
         clientes = Cliente.objects.all()
         return render(request, 'core/agregar_pedido.html', {'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+    
+def about_me(request):
+    return render(request, 'core/about_me.html')

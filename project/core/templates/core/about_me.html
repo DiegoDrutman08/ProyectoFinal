@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar_pedido.html' %}
+    <!-- Header-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Un poco de mi y de esta aplicacion WEB</div>
+            <div class="masthead-heading text-uppercase">About Me</div>
+        </div>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-center">Acerca de mí</h2>
+                    <p class="lead">Programador Trainee.</p>
+                    <p>Soy Diego Drutman, desarrollador backend python apasionado por la creación de experiencias digitales sorprendentes. Tengo experiencia en desarrollo frontend y backend, con un enfoque especial en tecnologías como Django, HTML, CSS, y JavaScript.</p>
+                    <p>Me encanta trabajar en proyectos desafiantes y aprender nuevas tecnologías para mejorar mis habilidades. Siempre estoy buscando oportunidades para colaborar en proyectos interesantes y llevar ideas creativas a la vida.</p>
+                    <!-- Puedes agregar más contenido según sea necesario -->
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}

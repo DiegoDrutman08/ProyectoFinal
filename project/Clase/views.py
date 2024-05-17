@@ -5,6 +5,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from . import forms, models
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
+from .models import UserProfile
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -147,5 +150,45 @@ def about_me(request):
 def index_staff(request):
     return render(request, 'core/index_staff.html')
 
+@login_required
 def mis_datos(request):
-    return render(request, 'core/mis_datos.html')
+    usuario = request.user
+    try:
+        perfil_usuario = UserProfile.objects.get(user=usuario)
+    except UserProfile.DoesNotExist:
+        perfil_usuario = None
+
+    return render(request, 'core/mis_datos.html', {'perfil_usuario': perfil_usuario})
+
+@login_required
+def mis_datos_editar(request):
+    usuario = request.user
+    try:
+        perfil_usuario = UserProfile.objects.get(user=usuario)
+    except UserProfile.DoesNotExist:
+        perfil_usuario = None
+
+    if request.method == 'POST':
+        if perfil_usuario:
+            form = UserProfileForm(request.POST, request.FILES, instance=perfil_usuario)
+        else:
+            form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            perfil_usuario = form.save(commit=False)
+            perfil_usuario.user = usuario
+            # Verificar si el usuario intenta limpiar la imagen
+            if 'avatar-clear' in request.POST:
+                perfil_usuario.avatar = None  # Limpiar la imagen del avatar
+            # Si no hay imagen seleccionada y el usuario no está limpiando la imagen,
+            # asignar la imagen predeterminada
+            elif not request.FILES and not perfil_usuario.avatar:
+                perfil_usuario.avatar = 'ok.jpg'  # Nombre de la imagen predeterminada
+            perfil_usuario.save()
+            return redirect('clase:mis_datos')  # Redirigir a la página de mis datos después de guardar
+    else:
+        if perfil_usuario:
+            form = UserProfileForm(instance=perfil_usuario)
+        else:
+            form = UserProfileForm()
+
+    return render(request, 'core/mis_datos_editar.html', {'form': form})

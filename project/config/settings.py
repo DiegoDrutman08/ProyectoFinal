@@ -130,3 +130,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = reverse_lazy("core:login")
 LOGIN_REDIRECT_URL = reverse_lazy("core:home")
+MEDIA_ROOT = 'C:/Users/Operador/ProyectoFinal/project/media/'
+MEDIA_URL = '/media/'

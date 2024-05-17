@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class ProductoCategoria(models.Model):
     """Categorías de productos"""
@@ -40,7 +41,7 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=100, null=True, blank=True)
     direccion = models.CharField(max_length=100, null=True, blank=True)  # Campo para la dirección del cliente
     email = models.EmailField(max_length=100, null=True, blank=True)  # Campo para el correo electrónico del cliente
-    edad = models.IntegerField(max_length=100, null=True, blank=True)  # Campo para la edad del cliente
+    edad = models.IntegerField(null=True, blank=True)  # Campo para la edad del cliente
 
     def __str__(self):
         return self.nombre
@@ -63,3 +64,19 @@ class Pedido(models.Model):
  
     def __str__(self):
         return str(self.codigo)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=100)
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+
+    @property
+    def avatar_url(self):
+        if self.avatar:
+            return self.avatar.url
+        else:
+            return '/media/avatars/ok.jpg'

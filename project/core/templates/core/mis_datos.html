@@ -13,41 +13,56 @@
     <!-- Header-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Django - CoderHouse</div>
-            <div class="masthead-heading text-uppercase">Tienda Nube</div>
-            <a class="btn btn-primary btn-xl text-uppercase" href="#producto">¡Saber mas!</a>
+            <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
+            <div class="masthead-heading text-uppercase">Mis Datos</div>
+             
         </div>
     </header>
-    <section class="page-section bg-light" id="cliente-info">
+    {% if perfil_usuario %}
+    <section class="page-section bg-light" id="cliente">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Información del Cliente</h2>
+                <h2 class="section-heading text-uppercase">Datos de tu usuario</h2>
+                <h3 class="section-subheading text-muted">Están asociados a tu ingreso y tu perfil.</h3>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    {% if cliente %}
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <p>{{ cliente.nombre }}</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">Dirección:</label>
-                            <p>{{ cliente.direccion }}</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico:</label>
-                            <p>{{ cliente.email }}</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="edad">Edad:</label>
-                            <p>{{ cliente.edad }}</p>
-                        </div>
-                    {% else %}
-                        <p>No se encontraron datos de cliente.</p>
-                        <a href="{% url 'core:home' %}" class="btn btn-primary">Agregar Cliente</a>
-                    {% endif %}
+            <div class="row justify-content-center align-items-center"> <!-- Alineación vertical -->
+                <div class="col-lg-4"> <!-- Columna para la foto -->
+                    <div class="text-center">
+                        {% if perfil_usuario.avatar %}
+                            <img src="{{ perfil_usuario.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle mb-2" style="height: 200px;">
+                        {% else %}
+                            <img src="{% static 'ok.jpg' %}" alt="Avatar Predeterminado" class="img-fluid rounded-circle mb-2" style="height: 200px;">
+                        {% endif %}
+                    </div>
                 </div>
+                <div class="col-lg-4">
+                    <ul>
+                        <li>
+                            <span class="font-weight-bold" style="font-size: 18px;">Nombre:</span>
+                            <span class="font-size-large" style="font-size: 22px;">{{ perfil_usuario.nombre }}</span>
+                        </li>
+                        <li>
+                            <span class="font-weight-bold" style="font-size: 18px;">Dirección:</span>
+                            <span class="font-size-large" style="font-size: 22px;">{{ perfil_usuario.direccion }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4"> <!-- Columna para el botón de editar -->
+                    <div class="text-center mt-5 mt-lg-20">
+                        <a href="{% url 'clase:mis_datos_editar' %}" class="btn btn-primary btn-xl text-uppercase" type="submit">Editar</a>
+                    </div>
+                </div>                                        
             </div>
         </div>
-    </section>       
+    </section>
+{% else %}
+    <section class="page-section bg-light" id="cliente">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">No hay datos de este usuario.</h2>
+                <a href="{% url 'clase:mis_datos_editar' %}" class="btn btn-primary btn-xl text-uppercase mt-3">Agregar datos</a>
+            </div>
+        </div>
+    </section>
+{% endif %}
 {% endblock content %}

@@ -17,6 +17,7 @@ urlpatterns = [
     path('agregar_pedido/', views.agregar_pedido, name='agregar_pedido'),
     path('about_me/', views.about_me, name='about_me'),
     path('mis_datos/', views.mis_datos, name='mis_datos'),
+    path('mis-datos/editar/', views.mis_datos_editar, name='mis_datos_editar'),
 ]
 
 urlpatterns += [

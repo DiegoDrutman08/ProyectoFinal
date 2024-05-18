@@ -14,15 +14,13 @@
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
-            <div class="masthead-heading text-uppercase">Pedidos</div>
-             
+            <div class="masthead-heading text-uppercase">Clientes</div>
         </div>
     </header>
-
     <section class="page-section bg-light" id="cliente">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Ingresa tus datos personales</h2>
+                <h2 class="section-heading text-uppercase">Ingresa los datos del cliente</h2>
                 <h3 class="section-subheading text-muted">Los necesitaremos para realizar el pedido.</h3>
             </div>
             <div class="row justify-content-center">
@@ -42,6 +40,7 @@
                             <input class="form-control mt-3" id="edad" name="edad" type="number" placeholder="Edad *" required="required" />
                         </div>
                         <button class="btn btn-primary btn-xl text-uppercase mt-3" type="submit">Enviar</button>
+                        <p class="mt-3">¿Ya está registrado el cliente? <a href="{% url 'clase:agregar_pedido' %}">Haz clic aquí</a></p>
                     </form>
                 </div>
             </div>

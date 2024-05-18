@@ -29,3 +29,4 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['nombre', 'direccion', 'avatar']
+

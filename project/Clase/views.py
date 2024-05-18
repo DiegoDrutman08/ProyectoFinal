@@ -79,7 +79,6 @@ class ProductoDelete(DeleteView):
     model = models.Producto
     success_url = reverse_lazy("clase:producto_list")
 
-
 def agregar_cliente(request):
     if request.method == 'POST':
         nombre_cliente = request.POST.get('nombre')
@@ -87,6 +86,11 @@ def agregar_cliente(request):
         email_cliente = request.POST.get('email')
         edad_cliente = request.POST.get('edad')
 
+        # Verificar si ya existe un cliente con el mismo nombre
+        if Cliente.objects.filter(nombre=nombre_cliente).exists():
+            return render(request, 'core/index.html', {'message': 'Ya existe un cliente con este nombre'})
+        
+        # Si no existe, crear el cliente
         Cliente.objects.create(nombre=nombre_cliente, direccion=direccion_cliente, email=email_cliente, edad=edad_cliente)
 
         return redirect('clase:agregar_pedido')
@@ -97,6 +101,12 @@ def agregar_vendedor(request):
     if request.method == 'POST':
         nombre_vendedor = request.POST.get('vendedor')
         edad_vendedor = request.POST.get('edad')
+
+        # Verificar si ya existe un vendedor con el mismo nombre
+        if Vendedor.objects.filter(nombre=nombre_vendedor).exists():
+            return render(request, 'core/index_staff.html', {'message': 'Ya existe un vendedor con este nombre'})
+        
+        # Si no existe, crear el vendedor
         if nombre_vendedor and edad_vendedor:
             Vendedor.objects.create(nombre=nombre_vendedor, edad=edad_vendedor)
             return redirect('core:home')
@@ -117,14 +127,19 @@ def agregar_pedido(request):
             vendedor = Vendedor.objects.get(id=vendedor_id)
             cliente = Cliente.objects.get(id=cliente_id)
             
-            while True:
-                try:
-                    pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
-                    break
-                except IntegrityError:
-                    codigo += "_1"
+            # Verificar si ya existe un pedido con el mismo código
+            while Pedido.objects.filter(codigo=codigo).exists():
+                codigo += "_1"
+            
+            pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
         except (Producto.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
             error_message = "Uno o más objetos no existen"
+            productos = Producto.objects.all()
+            vendedores = Vendedor.objects.all()
+            clientes = Cliente.objects.all()
+            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+        except IntegrityError:
+            error_message = "Ya existe un pedido con este código"
             productos = Producto.objects.all()
             vendedores = Vendedor.objects.all()
             clientes = Cliente.objects.all()
@@ -168,10 +183,13 @@ def mis_datos_editar(request):
             form = UserProfileForm(request.POST, request.FILES, instance=perfil_usuario)
         else:
             form = UserProfileForm(request.POST, request.FILES)
+            
         if form.is_valid():
             perfil_usuario = form.save(commit=False)
             perfil_usuario.user = usuario
-            if 'avatar-clear' in request.POST:
+            if 'avatar-clear' in form.cleaned_data and perfil_usuario.avatar == 'ok.jpg':
+                pass
+            elif 'avatar-clear' in form.cleaned_data:   
                 perfil_usuario.avatar = None
             elif not request.FILES and not perfil_usuario.avatar:
                 perfil_usuario.avatar = 'ok.jpg'
@@ -181,6 +199,12 @@ def mis_datos_editar(request):
         if perfil_usuario:
             form = UserProfileForm(instance=perfil_usuario)
         else:
-            form = UserProfileForm()
+            perfil_usuario = UserProfile(user=usuario, avatar='ok.jpg')
+            perfil_usuario.save()
+            form = UserProfileForm(instance=perfil_usuario)
+
+        if 'avatar-clear' in form.fields:
+            del form.fields['avatar-clear']
 
     return render(request, 'core/mis_datos_editar.html', {'form': form})
+

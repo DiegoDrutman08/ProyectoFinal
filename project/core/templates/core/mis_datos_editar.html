@@ -21,8 +21,8 @@
     <section class="page-section bg-light" id="cliente">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Ingresa tus datos personales</h2>
-                <h3 class="section-subheading text-muted">Los necesitaremos para realizar el pedido.</h3>
+                <h2 class="section-heading text-uppercase">Edita tus datos personales</h2>
+                <h3 class="section-subheading text-muted">Los necesitaremos para poder identificarte.</h3>
             </div>
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -35,11 +35,5 @@
             </div>
         </div>
     </div>
-{% if perfil_usuario.avatar %}
-    <img src="{{ perfil_usuario.avatar.url }}" alt="Avatar de usuario">
-{% else %}
-    <img src="{% get_media_prefix %}ok.jpg" alt="Avatar Predeterminado">
-{% endif %}
-
 
 {% endblock content %}

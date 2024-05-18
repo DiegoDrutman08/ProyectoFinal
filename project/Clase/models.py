@@ -3,13 +3,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class ProductoCategoria(models.Model):
-    """Categorías de productos"""
 
     nombre = models.CharField(max_length=200, unique=True)
     descripcion = models.CharField(max_length=250, null=True, blank=True, verbose_name="descripción")
 
     def __str__(self) -> str:
-        """Representa una instancia del modelo como una cadena de texto"""
         return self.nombre
 
     class Meta:
@@ -36,12 +34,11 @@ class Producto(models.Model):
         verbose_name = "producto"
         verbose_name_plural = "productos"
 
-
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100, null=True, blank=True)
-    direccion = models.CharField(max_length=100, null=True, blank=True)  # Campo para la dirección del cliente
-    email = models.EmailField(max_length=100, null=True, blank=True)  # Campo para el correo electrónico del cliente
-    edad = models.IntegerField(null=True, blank=True)  # Campo para la edad del cliente
+    direccion = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.nombre

@@ -1,28 +1,26 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block title %}
-    Productos: Detalle de una Categoría de Producto
-{% endblock title %}
+    {% extends 'core/base.html' %}
+    {% load static %}
 
-{% block content %}
-    <!-- Responsive navbar-->
-    {% include 'core/components/navbar_producto.html' %}
-    <!-- Header-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-            <h1 class="masthead-heading text-uppercase">Productos</h1>
+    {% block title %}
+        Productos: Detalle de una Categoría de Producto
+    {% endblock title %}
+
+    {% block content %}
+        {% include 'core/components/navbar_producto.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+                <h1 class="masthead-heading text-uppercase">Productos</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+        <h1 style="font-size: 30px;">Categoria</h1>
+        <ul style="font-size: 24px;">
+            <li>Nombre: {{ object.nombre }}</li>
+            <li>Descripción: {{ object.descripcion }}</li>
+        </ul>
+        <div class="fs-3 pb-4">
+            <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-primary btn-lg text-uppercase">Volver al inicio de producto</a>
         </div>
-    </header>
-    <div class="container my-5">
-    <h1 style="font-size: 30px;">Categoria</h1>
-    <ul style="font-size: 24px;"> <!-- Se ajusta el tamaño de la fuente -->
-        <li>Nombre: {{ object.nombre }}</li>
-        <li>Descripción: {{ object.descripcion }}</li>
-    </ul>
-
-    <div class="fs-3 pb-4">
-        <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-primary btn-lg text-uppercase">Volver al inicio de producto</a> <!-- Se hace el botón más pequeño y el texto en mayúsculas -->
-    </div>
-    </div>
-{% endblock content %}
+        </div>
+    {% endblock content %}

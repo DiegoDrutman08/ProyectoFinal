@@ -1,30 +1,28 @@
-{% extends 'core/base.html' %}
-{% load static %}
+    {% extends 'core/base.html' %}
+    {% load static %}
 
-{% block title %}
-    Productos: Borrar un Producto
-{% endblock title %}
+    {% block title %}
+        Productos: Borrar un Producto
+    {% endblock title %}
 
-{% block content %}
-    <!-- Responsive navbar-->
-    {% include 'core/components/navbar_producto.html' %}
-    <!-- Header-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-            <h1 class="masthead-heading text-uppercase">Productos</h1>
+    {% block content %}
+        {% include 'core/components/navbar_producto.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+                <h1 class="masthead-heading text-uppercase">Productos</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+            <h1 style="font-size: 30px;">Eliminar producto</h1>
+            <p class="fs-3 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
+
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button>
+            </form>
+            <div class="fs-3 pb-4 mt-2">
+                <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
+            </div>
         </div>
-    </header>
-    <div class="container my-5">
-        <h1 style="font-size: 30px;">Eliminar producto</h1>
-        <p class="fs-3 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
-
-        <form method="post" class="mt-4">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button>
-        </form>
-        <div class="fs-3 pb-4 mt-2">
-            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
-        </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}

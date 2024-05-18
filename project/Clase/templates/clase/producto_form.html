@@ -1,37 +1,35 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block title %}
-    Producto: 
-    {% if form.instance.pk %}
-        Editar
-    {% else %}
-        Crear
-    {% endif %}
-    Productos
-{% endblock title %}
+    {% extends 'core/base.html' %}
+    {% load static %}
 
-{% block content %}
-    <!-- Responsive navbar-->
-    {% include 'core/components/navbar_producto.html' %}
-    <!-- Header-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-            <h1 class="masthead-heading text-uppercase">Productos</h1>
+    {% block title %}
+        Producto: 
+        {% if form.instance.pk %}
+            Editar
+        {% else %}
+            Crear
+        {% endif %}
+        Productos
+    {% endblock title %}
+
+    {% block content %}
+        {% include 'core/components/navbar_producto.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+                <h1 class="masthead-heading text-uppercase">Productos</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+        <form method="post">
+            {% csrf_token %}
+            <table class="table table-striped">
+                <h1 style="font-size: 30px;">Agregar producto</h1>
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-primary btn-lg text-uppercase float-left">Guardar</button>
+        </form>
+        <div class="fs-3 pb-4">
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase float-left mt-2">Volver al inicio de Producto</a>
         </div>
-    </header>
-    <div class="container my-5">
-    <form method="post">
-        {% csrf_token %}
-        <table class="table table-striped">
-            <h1 style="font-size: 30px;">Agregar producto</h1> <!-- Agregado de la clase table y table-striped para darle estilo similar al segundo código -->
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="btn btn-primary btn-lg text-uppercase float-left">Guardar</button>
-    </form>
-    <div class="fs-3 pb-4">
-        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase float-left mt-2">Volver al inicio de Producto</a>
-    </div>
-    </div>
-    
-{% endblock content %}
+        </div>
+    {% endblock content %}

@@ -87,13 +87,10 @@ def agregar_cliente(request):
         email_cliente = request.POST.get('email')
         edad_cliente = request.POST.get('edad')
 
-        # Crear el cliente con los datos recibidos
         Cliente.objects.create(nombre=nombre_cliente, direccion=direccion_cliente, email=email_cliente, edad=edad_cliente)
 
-        # Redireccionar a la página principal
         return redirect('clase:agregar_pedido')
     else:
-        # Si no es una solicitud POST, mostrar el formulario
         return render(request, 'core/base.html')
 
 def agregar_vendedor(request):
@@ -120,14 +117,12 @@ def agregar_pedido(request):
             vendedor = Vendedor.objects.get(id=vendedor_id)
             cliente = Cliente.objects.get(id=cliente_id)
             
-            # Verificar si el código ya existe en la base de datos
             while True:
                 try:
                     pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
                     break
                 except IntegrityError:
-                    # Generar un nuevo código si el actual ya existe
-                    codigo += "_1"  # Puedes modificar esto según tu lógica de generación de códigos
+                    codigo += "_1"
         except (Producto.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
             error_message = "Uno o más objetos no existen"
             productos = Producto.objects.all()
@@ -176,15 +171,12 @@ def mis_datos_editar(request):
         if form.is_valid():
             perfil_usuario = form.save(commit=False)
             perfil_usuario.user = usuario
-            # Verificar si el usuario intenta limpiar la imagen
             if 'avatar-clear' in request.POST:
-                perfil_usuario.avatar = None  # Limpiar la imagen del avatar
-            # Si no hay imagen seleccionada y el usuario no está limpiando la imagen,
-            # asignar la imagen predeterminada
+                perfil_usuario.avatar = None
             elif not request.FILES and not perfil_usuario.avatar:
-                perfil_usuario.avatar = 'ok.jpg'  # Nombre de la imagen predeterminada
+                perfil_usuario.avatar = 'ok.jpg'
             perfil_usuario.save()
-            return redirect('clase:mis_datos')  # Redirigir a la página de mis datos después de guardar
+            return redirect('clase:mis_datos')
     else:
         if perfil_usuario:
             form = UserProfileForm(instance=perfil_usuario)

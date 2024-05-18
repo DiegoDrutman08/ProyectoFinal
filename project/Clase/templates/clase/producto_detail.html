@@ -1,33 +1,30 @@
-{% extends 'core/base.html' %}
-{% load static %}
+    {% extends 'core/base.html' %}
+    {% load static %}
 
-{% block title %}
-    Productos: Detalle de un Producto
-{% endblock title %}
+    {% block title %}
+        Productos: Detalle de un Producto
+    {% endblock title %}
 
-{% block content %}
-    <!-- Responsive navbar-->
-    {% include 'core/components/navbar_producto.html' %}
-    <!-- Header-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-            <h1 class="masthead-heading text-uppercase">Productos</h1>
+    {% block content %}
+        {% include 'core/components/navbar_producto.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
+                <h1 class="masthead-heading text-uppercase">Productos</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+            <h1 style="font-size: 30px;">Productos de esta categoría</h1>
+        <ul>
+            <li style="font-size: 24px;">Categoria: {{ object.categoria }}</li>
+            <li style="font-size: 24px;">Nombre: {{ object.nombre }}</li>
+            <li style="font-size: 24px;">Cantidad: {{ object.cantidad }}</li>
+            <li style="font-size: 24px;">Precio: {{ object.descripcion }}</li>
+            <li style="font-size: 24px;">Fecha: {{ object.fecha_actualizacion }}</li>
+        </ul>
+
+        <div class="fs-3 pb-4">
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
         </div>
-    </header>
-    <div class="container my-5">
-        <h1 style="font-size: 30px;">Productos de esta categoría</h1>
-    <ul>
-        <li style="font-size: 24px;">Categoria: {{ object.categoria }}</li>
-        <li style="font-size: 24px;">Nombre: {{ object.nombre }}</li>
-        <li style="font-size: 24px;">Cantidad: {{ object.cantidad }}</li>
-        <li style="font-size: 24px;">Precio: {{ object.descripcion }}</li>
-        <li style="font-size: 24px;">Fecha: {{ object.fecha_actualizacion }}</li>
-    </ul>
-
-    <div class="fs-3 pb-4">
-        <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
-    </div>
-    </div>
-
-{% endblock content %}
+        </div>
+    {% endblock content %}

@@ -9,7 +9,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'clase:mis_datos' %}">Mis Datos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Clientes & Pedidos</a></li>
                     {% if user.is_staff %}
@@ -27,10 +26,6 @@
                             {{ user.username }}
                         </span>
                     </li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'core:login' %}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'core:register' %}">Registrarse</a></li>
-                {% endif %}
             </ul>            
         </div>
     </div>

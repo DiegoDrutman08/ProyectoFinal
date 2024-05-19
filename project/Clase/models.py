@@ -76,4 +76,4 @@ class UserProfile(models.Model):
         if self.avatar:
             return self.avatar.url
         else:
-            return '/media/ok.jpg'
+            return '/media/default.jpg'

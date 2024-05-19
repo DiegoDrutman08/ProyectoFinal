@@ -14,7 +14,7 @@
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
-            <div class="masthead-heading text-uppercase">Datos</div>
+            <div class="masthead-heading text-uppercase">Mis Datos</div>
         </div>
     </header>
     {% if perfil_usuario %}
@@ -30,7 +30,7 @@
                         {% if perfil_usuario.avatar %}
                         <img src="{{ perfil_usuario.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle mb-2" style="height: 200px;">
                     {% else %}
-                        <img src="{% static 'ok.jpg' %}" alt="Avatar Predeterminado" class="img-fluid rounded-circle mb-2" style="height: 200px;">
+                        <img src="{% static 'default.jpg' %}" alt="Avatar Predeterminado" class="img-fluid rounded-circle mb-2" style="height: 200px;">
                     {% endif %}                    
                     </div>
                 </div>

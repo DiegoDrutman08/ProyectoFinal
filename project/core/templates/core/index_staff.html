@@ -31,7 +31,12 @@
                     <form id="add-vendedor-form" action="{% url 'clase:agregar_vendedor' %}" method="POST" class="text-center">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input class="form-control" id="vendedor" name="vendedor" type="text" placeholder="Nombre *" required="required" />
+                            <input class="form-control {% if mensaje %} is-invalid {% endif %}" id="vendedor" name="vendedor" type="text" placeholder="Nombre *" required="required" />
+                            {% if mensaje %}
+                                <div class="invalid-feedback">
+                                    {{ mensaje }}
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <input class="form-control mt-3" id="edad" name="edad" type="number" placeholder="Edad *" required="required"/>

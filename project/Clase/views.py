@@ -8,6 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from .models import UserProfile
+from django.contrib import messages
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -88,15 +89,16 @@ def agregar_cliente(request):
 
         # Verificar si ya existe un cliente con el mismo nombre
         if Cliente.objects.filter(nombre=nombre_cliente).exists():
-            return render(request, 'core/index.html', {'message': 'Ya existe un cliente con este nombre'})
-        
+            messages.error(request, 'Ya existe un cliente con este nombre')
+            return render(request, 'core/index.html', {'mensaje': 'Ya existe un cliente con este nombre'})
+
         # Si no existe, crear el cliente
         Cliente.objects.create(nombre=nombre_cliente, direccion=direccion_cliente, email=email_cliente, edad=edad_cliente)
 
         return redirect('clase:agregar_pedido')
     else:
         return render(request, 'core/base.html')
-
+    
 def agregar_vendedor(request):
     if request.method == 'POST':
         nombre_vendedor = request.POST.get('vendedor')
@@ -104,7 +106,8 @@ def agregar_vendedor(request):
 
         # Verificar si ya existe un vendedor con el mismo nombre
         if Vendedor.objects.filter(nombre=nombre_vendedor).exists():
-            return render(request, 'core/index_staff.html', {'message': 'Ya existe un vendedor con este nombre'})
+            messages.error(request, 'Ya existe un vendedor con este nombre')
+            return render(request, 'core/index_staff.html', {'mensaje': 'Ya existe un vendedor con este nombre'})
         
         # Si no existe, crear el vendedor
         if nombre_vendedor and edad_vendedor:
@@ -129,7 +132,8 @@ def agregar_pedido(request):
             
             # Verificar si ya existe un pedido con el mismo código
             while Pedido.objects.filter(codigo=codigo).exists():
-                codigo += "_1"
+                messages.error(request, 'Ya existe un pedido con este codigo')
+                return render(request, 'core/agregar_pedido.html', {'mensaje': 'Ya existe un pedido con este codigo'})
             
             pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
         except (Producto.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
@@ -145,7 +149,7 @@ def agregar_pedido(request):
             clientes = Cliente.objects.all()
             return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
         
-        return redirect('core:home')
+        return redirect('clase:agregar_pedido')
     
     else:
         productos = Producto.objects.all()
@@ -187,19 +191,19 @@ def mis_datos_editar(request):
         if form.is_valid():
             perfil_usuario = form.save(commit=False)
             perfil_usuario.user = usuario
-            if 'avatar-clear' in form.cleaned_data and perfil_usuario.avatar == 'ok.jpg':
+            if 'avatar-clear' in form.cleaned_data and perfil_usuario.avatar == 'default.jpg':
                 pass
             elif 'avatar-clear' in form.cleaned_data:   
                 perfil_usuario.avatar = None
             elif not request.FILES and not perfil_usuario.avatar:
-                perfil_usuario.avatar = 'ok.jpg'
+                perfil_usuario.avatar = 'default.jpg'
             perfil_usuario.save()
             return redirect('clase:mis_datos')
     else:
         if perfil_usuario:
             form = UserProfileForm(instance=perfil_usuario)
         else:
-            perfil_usuario = UserProfile(user=usuario, avatar='ok.jpg')
+            perfil_usuario = UserProfile(user=usuario, avatar='default.jpg')
             perfil_usuario.save()
             form = UserProfileForm(instance=perfil_usuario)
 

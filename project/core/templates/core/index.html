@@ -5,22 +5,20 @@
 {% endblock title %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        {{ mensaje }}
-    {% endif %}
     <!-- Responsive navbar-->
     {% include 'core/components/navbar.html' %}
     <!-- Header-->
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
-            <div class="masthead-heading text-uppercase">Clientes</div>
+            <div class="masthead-heading text-uppercase">¿Nuevo Cliente?</div>
         </div>
     </header>
+    {% if user.is_authenticated %}
     <section class="page-section bg-light" id="cliente">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Ingresa los datos del cliente</h2>
+                <h2 class="section-heading text-uppercase">Ingresa sus datos</h2>
                 <h3 class="section-subheading text-muted">Los necesitaremos para realizar el pedido.</h3>
             </div>
             <div class="row justify-content-center">
@@ -28,7 +26,12 @@
                     <form id="add-cliente-form" action="{% url 'clase:agregar_cliente' %}" method="POST" class="text-center">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre completo *" required="required" />
+                            <input class="form-control {% if mensaje %} is-invalid {% endif %}" id="nombre" name="nombre" type="text" placeholder="Nombre completo *" required="required" />
+                            {% if mensaje %}
+                                <div class="invalid-feedback">
+                                    {{ mensaje }}
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <input class="form-control mt-3" id="direccion" name="direccion" type="text" placeholder="Dirección *" required="required" />
@@ -45,5 +48,6 @@
                 </div>
             </div>
         </div>
-    </section>    
+    </section>
+    {% endif %}
 {% endblock content %}

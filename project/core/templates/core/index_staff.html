@@ -8,9 +8,7 @@
     {% if user.is_authenticated %}
         {{ mensaje }}
     {% endif %}
-    <!-- Responsive navbar-->
     {% include 'core/components/navbar.html' %}
-    <!-- Header-->
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
@@ -18,12 +16,10 @@
              
         </div>
     </header>
-    
-    <!-- Vendedores-->
     <section class="page-section" id="vendedor">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Formulario - Agregar vendedor</h2>
+                <h2 class="section-heading text-uppercase">Agrega un nuevo vendedor</h2>
                 <h3 class="section-subheading text-muted">Agrega un vendedor nuevo a la lista.</h3>
             </div>
             <div class="row justify-content-center">
@@ -47,13 +43,11 @@
             </div>
         </div>
     </section>
-
-    <!-- Productos-->
     <section class="page-section" id="producto">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Formulario - Agregar Producto</h2>
-                <h3 class="section-subheading text-muted">Agrega un producto nuevo a la lista.</h3>
+                <h2 class="section-heading text-uppercase">Ingresa productos</h2>
+                <h3 class="section-subheading text-muted">Agrega o edita un producto de la lista.</h3>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">

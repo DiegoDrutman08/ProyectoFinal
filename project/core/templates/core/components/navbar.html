@@ -14,15 +14,15 @@
                     {% if user.is_staff %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'clase:index_staff' %}">Vendedores & Productos</a></li
                     {% endif %}
-                    <li class="nav-item ms-lg-5"> <!-- Añadimos una clase de margen para separar -->
+                    <li class="nav-item ms-lg-5">
                         <form action="{% url 'core:logout' %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Logout</button>
                         </form>
                     </li>
-                    <li class="nav-item ms-lg-3"> <!-- Añadimos una clase de margen para separar -->
+                    <li class="nav-item ms-lg-3">
                         <span class="nav-link">
-                            <i class="fas fa-user"></i> <!-- Icono de usuario -->
+                            <i class="fas fa-user"></i>
                             {{ user.username }}
                         </span>
                     </li>

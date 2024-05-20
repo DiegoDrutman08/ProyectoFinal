@@ -8,9 +8,7 @@
     {% if user.is_authenticated %}
         {{ mensaje }}
     {% endif %}
-    <!-- Responsive navbar-->
     {% include 'core/components/navbar.html' %}
-    <!-- Header-->
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
@@ -24,8 +22,8 @@
                 <h2 class="section-heading text-uppercase">Datos de tu usuario</h2>
                 <h3 class="section-subheading text-muted">Están asociados a tu ingreso y tu perfil.</h3>
             </div>
-            <div class="row justify-content-center align-items-center"> <!-- Alineación vertical -->
-                <div class="col-lg-4"> <!-- Columna para la foto -->
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-4">
                     <div class="text-center">
                         {% if perfil_usuario.avatar %}
                         <img src="{{ perfil_usuario.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle mb-2" style="height: 200px;">
@@ -46,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-4"> <!-- Columna para el botón de editar -->
+                <div class="col-lg-4">
                     <div class="text-center mt-5 mt-lg-20">
                         <a href="{% url 'clase:mis_datos_editar' %}" class="btn btn-primary btn-xl text-uppercase" type="submit">Editar</a>
                     </div>

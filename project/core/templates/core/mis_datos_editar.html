@@ -8,9 +8,7 @@
     {% if user.is_authenticated %}
         {{ mensaje }}
     {% endif %}
-    <!-- Responsive navbar-->
     {% include 'core/components/navbar.html' %}
-    <!-- Header-->
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Generalo y guardalo directamente en nuestra base de datos</div>
@@ -29,11 +27,9 @@
                 <form method="post" enctype="multipart/form-data" >
                     {% csrf_token %}
                     {{ form.as_p }}
-                    
                     <button type="submit" class="btn btn-primary btn-xl text-uppercase mt-3">Guardar Cambios</button>
                 </form>                
             </div>
         </div>
     </div>
-
 {% endblock content %}

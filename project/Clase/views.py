@@ -87,12 +87,10 @@ def agregar_cliente(request):
         email_cliente = request.POST.get('email')
         edad_cliente = request.POST.get('edad')
 
-        # Verificar si ya existe un cliente con el mismo nombre
         if Cliente.objects.filter(nombre=nombre_cliente).exists():
             messages.error(request, 'Ya existe un cliente con este nombre')
             return render(request, 'core/index.html', {'mensaje': 'Ya existe un cliente con este nombre'})
 
-        # Si no existe, crear el cliente
         Cliente.objects.create(nombre=nombre_cliente, direccion=direccion_cliente, email=email_cliente, edad=edad_cliente)
 
         return redirect('clase:agregar_pedido')
@@ -104,12 +102,10 @@ def agregar_vendedor(request):
         nombre_vendedor = request.POST.get('vendedor')
         edad_vendedor = request.POST.get('edad')
 
-        # Verificar si ya existe un vendedor con el mismo nombre
         if Vendedor.objects.filter(nombre=nombre_vendedor).exists():
             messages.error(request, 'Ya existe un vendedor con este nombre')
             return render(request, 'core/index_staff.html', {'mensaje': 'Ya existe un vendedor con este nombre'})
         
-        # Si no existe, crear el vendedor
         if nombre_vendedor and edad_vendedor:
             Vendedor.objects.create(nombre=nombre_vendedor, edad=edad_vendedor)
             return redirect('core:home')
@@ -130,7 +126,6 @@ def agregar_pedido(request):
             vendedor = Vendedor.objects.get(id=vendedor_id)
             cliente = Cliente.objects.get(id=cliente_id)
             
-            # Verificar si ya existe un pedido con el mismo código
             while Pedido.objects.filter(codigo=codigo).exists():
                 messages.error(request, 'Ya existe un pedido con este codigo')
                 return render(request, 'core/agregar_pedido.html', {'mensaje': 'Ya existe un pedido con este codigo'})

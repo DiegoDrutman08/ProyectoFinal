@@ -12,7 +12,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'clase:mis_datos' %}">Mis Datos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Clientes & Pedidos</a></li>
                     {% if user.is_staff %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'clase:index_staff' %}">Vendedores & Productos</a></li
+                    <li class="nav-item"><a class="nav-link" href="{% url 'clase:index_staff' %}">Vendedores & Sucursales</a></li
                     {% endif %}
                     <li class="nav-item ms-lg-5">
                         <form action="{% url 'core:logout' %}" method="post">

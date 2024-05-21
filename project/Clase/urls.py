@@ -6,11 +6,11 @@ app_name = "clase"
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("productocategoria/create/", views.ProductoCategoriaCreate.as_view(), name="productocategoria_create"),
-    path("productocategoria/list/", views.ProductoCategoriaList.as_view(), name="productocategoria_list"),
-    path("productocategoria/detail/<int:pk>", views.ProductoCategoriaDetail.as_view(), name="productocategoria_detail"),
-    path("productocategoria/update/<int:pk>", views.ProductoCategoriaUpdate.as_view(), name="productocategoria_update"),
-    path("productocategoria/delete/<int:pk>", views.ProductoCategoriaDelete.as_view(), name="productocategoria_delete"),
+    path("localidad/create/", views.LocalidadCreate.as_view(), name="localidad_create"),
+    path("localidad/list/", views.LocalidadList.as_view(), name="localidad_list"),
+    path("localidad/detail/<int:pk>", views.LocalidadDetail.as_view(), name="localidad_detail"),
+    path("localidad/update/<int:pk>", views.LocalidadUpdate.as_view(), name="localidad_update"),
+    path("localidad/delete/<int:pk>", views.LocalidadDelete.as_view(), name="localidad_delete"),
     path('index_staff/', views.index_staff, name='index_staff'),
     path('agregar_cliente/', views.agregar_cliente, name='agregar_cliente'),
     path('agregar_vendedor/', views.agregar_vendedor, name='agregar_vendedor'),
@@ -21,9 +21,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path("clase/list/", views.ProductoList.as_view(), name="producto_list"),
-    path("clase/create/", views.ProductoCreate.as_view(), name="producto_create"),
-    path("clase/detail/<int:pk>", views.ProductoDetail.as_view(), name="producto_detail"),
-    path("clase/update/<int:pk>", views.ProductoUpdate.as_view(), name="producto_update"),
-    path("clase/delete/<int:pk>", views.ProductoDelete.as_view(), name="producto_delete"),
+    path("clase/list/", views.SucursalList.as_view(), name="sucursal_list"),
+    path("clase/create/", views.SucursalCreate.as_view(), name="sucursal_create"),
+    path("clase/detail/<int:pk>", views.SucursalDetail.as_view(), name="sucursal_detail"),
+    path("clase/update/<int:pk>", views.SucursalUpdate.as_view(), name="sucursal_update"),
+    path("clase/delete/<int:pk>", views.SucursalDelete.as_view(), name="sucursal_delete"),
 ]

@@ -1,0 +1,31 @@
+    {% extends 'core/base.html' %}
+    {% load static %}
+
+    {% block title %}
+        Sucursales: Detalle de un Sucursal
+    {% endblock title %}
+
+    {% block content %}
+        {% include 'core/components/navbar.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+            <h1 style="font-size: 30px;">Sucursales de esta categoría</h1>
+        <ul>
+            <li style="font-size: 24px;">Localidad: {{ object.localidad }}</li>
+            <li style="font-size: 24px;">Nombre: {{ object.nombre }}</li>
+            <li style="font-size: 24px;">Telefono: {{ object.telefono }}</li>
+            <li style="font-size: 24px;">Email: {{ object.email }}</li>
+            <li style="font-size: 24px;">Descripcion: {{ object.descripcion }}</li>
+            <li style="font-size: 24px;">Fecha: {{ object.fecha_actualizacion }}</li>
+        </ul>
+
+        <div class="fs-3 pb-4">
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Sucursal</a>
+        </div>
+        </div>
+    {% endblock content %}

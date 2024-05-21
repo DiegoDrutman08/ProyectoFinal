@@ -2,25 +2,25 @@
     {% load static %}
 
     {% block title %}
-        Producto: 
+        Sucursal: 
         {% if form.instance.pk %}
             Editar
         {% else %}
             Crear
         {% endif %}
-        Categoría de Productos
+        Localidad de Sucursales
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
-        <h3  style="font-size: 30px;">Agregar categoria</h3>
+        <h3  style="font-size: 30px;">Agregar localidad</h3>
         <form method="post">
             {% csrf_token %}
             <table style="font-size: 24px;">
@@ -29,7 +29,7 @@
             <button type="submit" class="btn btn-primary btn-lg text-uppercase">Guardar</button>
         </form>
         <div class="fs-3 pb-4">
-            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase mt-2">Volver al inicio de Producto</a>
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase mt-2">Volver al inicio de Sucursal</a>
         </div>
         </div>
     {% endblock content %}

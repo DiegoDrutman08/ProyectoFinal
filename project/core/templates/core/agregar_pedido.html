@@ -35,10 +35,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select class="form-select" id="productos" name="productos" aria-label="Seleccionar producto" required="required">
-                                        <option selected disabled>Selecciona un producto</option>
-                                        {% for producto in productos %}
-                                            <option value="{{ producto.id }}">{{ producto.nombre }} ({{ producto.categoria }})</option>
+                                    <select class="form-select" id="sucursales" name="sucursales" aria-label="Seleccionar sucursal" required="required">
+                                        <option selected disabled>Selecciona un sucursal</option>
+                                        {% for sucursal in sucursales %}
+                                            <option value="{{ sucursal.id }}">{{ sucursal.nombre }} ({{ sucursal.localidad }})</option>
                                         {% endfor %}
                                     </select>
                                 </div>

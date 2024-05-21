@@ -1,0 +1,46 @@
+    {% extends 'core/base.html' %}
+    {% load static %}
+
+    {% block title %}
+        Sucursales: Lista de Sucursales
+    {% endblock title %}
+
+    {% block content %}
+        {% include 'core/components/navbar.html' %}
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
+            </div>
+        </header>
+        <div class="container my-5">
+            <div class="py-lg-2">
+                <form action="{% url 'clase:sucursal_list' %}" method="get">
+                    <input type="text" name="consulta" class="form-control fs-5" placeholder="Buscar...">
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-size: 30px;">Sucursales</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sucursal in object_list %}
+                        <tr>
+                            <td style="font-size: 24px;">{{ sucursal.nombre }}</td>
+                            <td>
+                                <a class="btn btn-info btn-lg me-1" href="{% url 'clase:sucursal_detail' sucursal.id %}">Detalle</a>
+                                <a class="btn btn-warning btn-lg me-1" href="{% url 'clase:sucursal_update' sucursal.id %}">Cambiar</a>
+                                <a class="btn btn-danger btn-lg" href="{% url 'clase:sucursal_delete' sucursal.id %}">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="mt-4">
+                <a class="btn btn-secondary btn-lg text-uppercase" href="{% url 'clase:home' %}" role="button">Volver al inicio de Sucursal</a>
+            </div>
+        </div>
+    {% endblock content %}

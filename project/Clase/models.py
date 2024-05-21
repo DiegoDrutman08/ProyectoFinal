@@ -2,8 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class ProductoCategoria(models.Model):
-
+class Localidad(models.Model):
     nombre = models.CharField(max_length=200, unique=True)
     descripcion = models.CharField(max_length=250, null=True, blank=True, verbose_name="descripción")
 
@@ -11,28 +10,27 @@ class ProductoCategoria(models.Model):
         return self.nombre
 
     class Meta:
-        verbose_name = "categoría de productos"
-        verbose_name_plural = "categorías de productos"
+        verbose_name = "localidad"
+        verbose_name_plural = "localidades"
 
-class Producto(models.Model):
-    categoria = models.ForeignKey(
-        ProductoCategoria, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="categoría de producto"
+class Sucursal(models.Model):
+    localidad = models.ForeignKey(
+        Localidad, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="localidad"
     )
     nombre = models.CharField(max_length=100)
-    unidad_medida = models.CharField(max_length=100, null=True, blank=True)
-    cantidad = models.FloatField(max_length=100, null=True, blank=True)
-    precio = models.FloatField(max_length=100, null=True, blank=True)
+    telefono = models.CharField(max_length=15, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     descripcion = models.TextField(null=True, blank=True, verbose_name="descripción")
     fecha_actualizacion = models.DateTimeField(
         null=True, blank=True, default=timezone.now, editable=False, verbose_name="fecha de actualización"
     )
 
     def __str__(self) -> str:
-        return f"{self.nombre} ({self.unidad_medida}) ${self.precio:.2f}"
+        return self.nombre
 
     class Meta:
-        verbose_name = "producto"
-        verbose_name_plural = "productos"
+        verbose_name = "sucursal"
+        verbose_name_plural = "sucursales"
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100, null=True, blank=True)
@@ -52,7 +50,7 @@ class Vendedor(models.Model):
 
 class Pedido(models.Model):
     codigo = models.PositiveIntegerField(unique=True)
-    producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True, blank=True)
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_NULL, null=True, blank=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True, related_name='pedidos_cliente')
     vendedor = models.ForeignKey(Vendedor, on_delete=models.SET_NULL, null=True, blank=True, related_name='pedidos_vendedor')
     fecha_actualizacion = models.DateField(

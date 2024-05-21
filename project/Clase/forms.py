@@ -2,9 +2,9 @@ from django import forms
 from . import models
 from .models import UserProfile
 
-class ProductoCategoriaForm(forms.ModelForm):
+class LocalidadForm(forms.ModelForm):
     class Meta:
-        model = models.ProductoCategoria
+        model = models.Localidad
         fields = "__all__"
         widgets = {
             "nombre": forms.TextInput(attrs={"class": "form-control"}),
@@ -12,16 +12,16 @@ class ProductoCategoriaForm(forms.ModelForm):
         }
 
 
-class ProductoForm(forms.ModelForm):
+class SucursalForm(forms.ModelForm):
     class Meta:
-        model = models.Producto
+        model = models.Sucursal
         fields = "__all__"
         widgets = {
             "nombre": forms.TextInput(attrs={"class": "form-control"}),
+            "telefono": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.TextInput(attrs={"class": "form-control"}),
             "descripcion": forms.TextInput(attrs={"class": "form-control"}),
-            "unidad_medida": forms.TextInput(attrs={"class": "form-control"}),
-            "precio": forms.TextInput(attrs={"class": "form-control"}),
-            "categoria_id": forms.Select(attrs={"class": "form-control"}),
+            "localidad_id": forms.Select(attrs={"class": "form-control"}),
             "fecha_actualizacion": forms.TextInput(attrs={"class": "form-control"}),
         }
 

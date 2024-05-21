@@ -2,31 +2,31 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.site_title = "Productos"
+admin.site.site_title = "Sucursales"
 
 
-class ProductoCategoriaAdmin(admin.ModelAdmin):
+class LocalidadAdmin(admin.ModelAdmin):
     list_display = ("nombre", "descripcion")
     list_display_links = ("nombre",)
 
 
-class ProductoAdmin(admin.ModelAdmin):
+class SucursalAdmin(admin.ModelAdmin):
     list_display = (
-        "categoria_id",
+        "localidad_id",
         "nombre",
-        "unidad_medida",
-        "cantidad",
-        "precio",
+        "telefono",
+        "email",
+        "descripcion",
         "fecha_actualizacion",
     )
     list_display_links = ("nombre",)
     search_fields = ("nombre",)
-    ordering = ("categoria_id", "nombre")
-    list_filter = ("categoria_id",)
+    ordering = ("localidad_id", "nombre")
+    list_filter = ("localidad_id",)
     date_hierarchy = "fecha_actualizacion"
 
-admin.site.register(models.ProductoCategoria, ProductoCategoriaAdmin)
-admin.site.register(models.Producto, ProductoAdmin)
+admin.site.register(models.Localidad, LocalidadAdmin)
+admin.site.register(models.Sucursal, SucursalAdmin)
 
 admin.site.register(models.Cliente)
 admin.site.register(models.Vendedor)

@@ -2,48 +2,48 @@
     {% load static %}
 
     {% block title %}
-        Productos: Lista de Categoría de Productos
+        Sucursales: Lista de Localidad de Sucursales
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
             <div class="py-lg-2">
-                <form action="{% url 'clase:productocategoria_list' %}" method="get">
+                <form action="{% url 'clase:localidad_list' %}" method="get">
                     <input type="text" name="consulta" class="form-control" style="font-size: 24px;" placeholder="Buscar...">
                 </form>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" style="font-size: 30px;">Categorias</th>
+                        <th scope="col" style="font-size: 30px;">Localidades</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for producto in object_list %}
+                    {% for sucursal in object_list %}
                         <tr>
-                            <td style="font-size: 24px;">{{ producto.nombre }}</td> 
+                            <td style="font-size: 24px;">{{ sucursal.nombre }}</td> 
                             <td>
                                 <a class="btn btn-info btn-lg me-1"
-                                href="{% url 'clase:productocategoria_detail' producto.id %}">Detalle</a>
+                                href="{% url 'clase:localidad_detail' sucursal.id %}">Detalle</a>
                                 <a class="btn btn-warning btn-lg me-1"
-                                href="{% url 'clase:productocategoria_update' producto.id %}">Editar</a>
+                                href="{% url 'clase:localidad_update' sucursal.id %}">Editar</a>
                                 <a class="btn btn-danger btn-lg"
-                                href="{% url 'clase:productocategoria_delete' producto.id %}">Borrar</a>
+                                href="{% url 'clase:localidad_delete' sucursal.id %}">Borrar</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <div class="fs-3 pb-4">
-                <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Producto</a>
+                <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase">Volver al inicio de Sucursal</a>
             </div>
         </div>
     {% endblock content %}

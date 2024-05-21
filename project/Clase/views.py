@@ -1,4 +1,4 @@
-from .models import Producto, Cliente, Vendedor, Pedido
+from .models import Sucursal, Cliente, Vendedor, Pedido
 from django.db import IntegrityError
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
@@ -20,65 +20,65 @@ from django.views.generic import (
 def home(request):
     return render(request, "clase/index.html")
 
-class ProductoCategoriaList(ListView):
-    model = models.ProductoCategoria
+class LocalidadList(ListView):
+    model = models.Localidad
 
     def get_queryset(self) -> QuerySet:
         if self.request.GET.get("consulta"):
             consulta = self.request.GET.get("consulta")
-            object_list = models.ProductoCategoria.objects.filter(nombre__icontains=consulta)
+            object_list = models.Localidad.objects.filter(nombre__icontains=consulta)
         else:
-            object_list = models.ProductoCategoria.objects.all()
+            object_list = models.Localidad.objects.all()
         return object_list
 
-class ProductoCategoriaCreate(CreateView):
-    model = models.ProductoCategoria
-    form_class = forms.ProductoCategoriaForm
+class LocalidadCreate(CreateView):
+    model = models.Localidad
+    form_class = forms.LocalidadForm
     success_url = reverse_lazy("clase:home")
 
-class ProductoCategoriaUpdate(UpdateView):
-    model = models.ProductoCategoria
-    form_class = forms.ProductoCategoriaForm
-    success_url = reverse_lazy("clase:productocategoria_list")
+class LocalidadUpdate(UpdateView):
+    model = models.Localidad
+    form_class = forms.LocalidadForm
+    success_url = reverse_lazy("clase:localidad_list")
 
-class ProductoCategoriaDetail(DetailView):
-    model = models.ProductoCategoria
+class LocalidadDetail(DetailView):
+    model = models.Localidad
 
-class ProductoCategoriaDelete(DeleteView):
-    model = models.ProductoCategoria
-    success_url = reverse_lazy("clase:productocategoria_list")
+class LocalidadDelete(DeleteView):
+    model = models.Localidad
+    success_url = reverse_lazy("clase:localidad_list")
 
-class ProductoList(ListView):
-    model = models.Producto
+class SucursalList(ListView):
+    model = models.Sucursal
 
     def get_queryset(self) -> QuerySet:
         if self.request.GET.get("consulta"):
             consulta = self.request.GET.get("consulta")
-            object_list = models.Producto.objects.filter(nombre__icontains=consulta)
+            object_list = models.Sucursal.objects.filter(nombre__icontains=consulta)
         else:
-            object_list = models.Producto.objects.all()
+            object_list = models.Sucursal.objects.all()
         return object_list
 
 
-class ProductoCreate(CreateView):
-    model = models.Producto
-    form_class = forms.ProductoForm
+class SucursalCreate(CreateView):
+    model = models.Sucursal
+    form_class = forms.SucursalForm
     success_url = reverse_lazy("clase:home")
 
 
-class ProductoUpdate(UpdateView):
-    model = models.Producto
-    form_class = forms.ProductoForm
-    success_url = reverse_lazy("clase:producto_list")
+class SucursalUpdate(UpdateView):
+    model = models.Sucursal
+    form_class = forms.SucursalForm
+    success_url = reverse_lazy("clase:sucursal_list")
 
 
-class ProductoDetail(DetailView):
-    model = models.Producto
+class SucursalDetail(DetailView):
+    model = models.Sucursal
 
 
-class ProductoDelete(DeleteView):
-    model = models.Producto
-    success_url = reverse_lazy("clase:producto_list")
+class SucursalDelete(DeleteView):
+    model = models.Sucursal
+    success_url = reverse_lazy("clase:sucursal_list")
 
 def agregar_cliente(request):
     if request.method == 'POST':
@@ -117,12 +117,12 @@ def agregar_vendedor(request):
 def agregar_pedido(request):
     if request.method == 'POST':
         codigo = request.POST.get('codigo')
-        producto_id = request.POST.get('productos')
+        sucursal_id = request.POST.get('sucursales')
         vendedor_id = request.POST.get('vendedores')
         cliente_id = request.POST.get('clientes')
         
         try:
-            producto = Producto.objects.get(id=producto_id)
+            sucursal = Sucursal.objects.get(id=sucursal_id)
             vendedor = Vendedor.objects.get(id=vendedor_id)
             cliente = Cliente.objects.get(id=cliente_id)
             
@@ -130,27 +130,27 @@ def agregar_pedido(request):
                 messages.error(request, 'Ya existe un pedido con este codigo')
                 return render(request, 'core/agregar_pedido.html', {'mensaje': 'Ya existe un pedido con este codigo'})
             
-            pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
-        except (Producto.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
+            pedido = Pedido.objects.create(codigo=codigo, sucursal=sucursal, vendedor=vendedor, cliente=cliente)
+        except (Sucursal.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
             error_message = "Uno o más objetos no existen"
-            productos = Producto.objects.all()
+            sucursales = Sucursal.objects.all()
             vendedores = Vendedor.objects.all()
             clientes = Cliente.objects.all()
-            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'sucursales': sucursales, 'vendedores': vendedores, 'clientes': clientes})
         except IntegrityError:
             error_message = "Ya existe un pedido con este código"
-            productos = Producto.objects.all()
+            sucursales = Sucursal.objects.all()
             vendedores = Vendedor.objects.all()
             clientes = Cliente.objects.all()
-            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'sucursales': sucursales, 'vendedores': vendedores, 'clientes': clientes})
         
         return redirect('clase:agregar_pedido')
     
     else:
-        productos = Producto.objects.all()
+        sucursales = Sucursal.objects.all()
         vendedores = Vendedor.objects.all()
         clientes = Cliente.objects.all()
-        return render(request, 'core/agregar_pedido.html', {'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+        return render(request, 'core/agregar_pedido.html', {'sucursales': sucursales, 'vendedores': vendedores, 'clientes': clientes})
     
 def about_me(request):
     return render(request, 'core/about_me.html')

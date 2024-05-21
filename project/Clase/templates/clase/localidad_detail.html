@@ -2,25 +2,25 @@
     {% load static %}
 
     {% block title %}
-        Productos: Detalle de una Categoría de Producto
+        Sucursales: Detalle de una Localidad de Sucursal
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
-        <h1 style="font-size: 30px;">Categoria</h1>
+        <h1 style="font-size: 30px;">Localidad</h1>
         <ul style="font-size: 24px;">
             <li>Nombre: {{ object.nombre }}</li>
             <li>Descripción: {{ object.descripcion }}</li>
         </ul>
         <div class="fs-3 pb-4">
-            <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-primary btn-lg text-uppercase">Volver al inicio de producto</a>
+            <a href="{% url 'clase:localidad_list' %}" class="btn btn-primary btn-lg text-uppercase">Volver al inicio de sucursal</a>
         </div>
         </div>
     {% endblock content %}

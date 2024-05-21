@@ -1,15 +1,15 @@
     {% extends 'core/base.html' %}
     {% load static %}
     {% block title %}
-        Productos: Cambiar una Categoría de Productos
+        Sucursales: Cambiar una Localidad de Sucursales
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
@@ -21,7 +21,7 @@
             <button type="submit" class="btn btn-primary btn-sm text-uppercase">Guardar</button>
         </form>
         <div class="fs-3 pb-4">
-            <a href="{% url 'clase:productocategoria_list' %}" class="btn btn-secondary btn-sm text-uppercase">Volver</a>
+            <a href="{% url 'clase:localidad_list' %}" class="btn btn-secondary btn-sm text-uppercase">Volver</a>
         </div>
         </div>
     {% endblock content %}

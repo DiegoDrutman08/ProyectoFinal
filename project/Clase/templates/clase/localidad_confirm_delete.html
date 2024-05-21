@@ -2,26 +2,26 @@
     {% load static %}
 
     {% block title %}
-        Productos: Borrar una Categoría de Productos
+        Sucursales: Borrar una Localidad de Sucursales
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
-        <h1 style="font-size: 30px;">Eliminar categoria</h1>
+        <h1 style="font-size: 30px;">Eliminar localidad</h1>
         <p class="fst-italic" style="font-size: 24px;">¿Confirma eliminar "{{ object.nombre }}"?</p>
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-lg text-uppercase">Confirmar</button>
         </form>
         <div class="fs-3 pb-4">
-            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase mt-2">Volver al inicio de Producto</a>
+            <a href="{% url 'clase:home' %}" class="btn btn-secondary btn-lg text-uppercase mt-2">Volver al inicio de Sucursal</a>
         </div>
         </div>
     {% endblock content %}

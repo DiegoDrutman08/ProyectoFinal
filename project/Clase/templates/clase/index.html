@@ -2,28 +2,28 @@
     {% load static %}
 
     {% block title %}
-        App Productos
+        App Sucursales
     {% endblock title %}
 
     {% block content %}
         {% include 'core/components/navbar.html' %}
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Crealos, editalos o borralos por categorias</div>
-                <h1 class="masthead-heading text-uppercase">Productos</h1>
+                <div class="masthead-subheading">Crealos, editalos o borralos por localidades</div>
+                <h1 class="masthead-heading text-uppercase">Sucursales</h1>
             </div>
         </header>
         <div class="container my-5">
-            <h3 class="pb-3 border-bottom" style="font-size: 30px;">Categorías</h3>
+            <h3 class="pb-3 border-bottom" style="font-size: 30px;">Localidades</h3>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-                <a class="btn btn-primary btn-lg me-md-2" href="{% url 'clase:productocategoria_create' %}" role="button">Crear Categoría</a>
-                <a class="btn btn-outline-primary btn-lg" href="{% url 'clase:productocategoria_list' %}" role="button">Listar Categorías</a>
+                <a class="btn btn-primary btn-lg me-md-2" href="{% url 'clase:localidad_create' %}" role="button">Agregar Localidad</a>
+                <a class="btn btn-outline-primary btn-lg" href="{% url 'clase:localidad_list' %}" role="button">Listar Localidades</a>
             </div>
 
-            <h3 class="pb-3 border-bottom" style="font-size: 30px;">Productos</h3>
+            <h3 class="pb-3 border-bottom" style="font-size: 30px;">Sucursales</h3>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-                <a class="btn btn-success btn-lg me-md-2" href="{% url 'clase:producto_create' %}" role="button">Agregar Producto</a>
-                <a class="btn btn-outline-success btn-lg" href="{% url 'clase:producto_list' %}" role="button">Listar Productos</a>
+                <a class="btn btn-success btn-lg me-md-2" href="{% url 'clase:sucursal_create' %}" role="button">Agregar Sucursal</a>
+                <a class="btn btn-outline-success btn-lg" href="{% url 'clase:sucursal_list' %}" role="button">Listar Sucursales</a>
             </div>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">

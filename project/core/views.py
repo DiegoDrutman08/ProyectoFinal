@@ -26,7 +26,7 @@ def register(request: HttpRequest) -> HttpResponse:
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('core:home')  # Redirige a la página principal
+                return redirect('core:home')
     else:
         form = CustomUserCreationForm()
     return render(request, "core/register.html", {"form": form})
